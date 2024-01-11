@@ -16,5 +16,76 @@
   "profile": {
     "name": "typicode"
   },
-  "employees": []
+  "employees": [],
+  "users": [
+    {
+      "userId": "1",
+      "userName": "john_doe",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@example.com",
+      "password": "password123",
+      "phoneNumber": "+123456789",
+      "address": "123 Main St, City",
+      "role": "user",
+      "id": "ff98"
+    },
+    {
+      "userId": "2",
+      "userName": "jane_doe",
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "jane.doe@example.com",
+      "password": "securepass",
+      "phoneNumber": "+987654321",
+      "address": "456 Oak St, Town",
+      "role": "admin",
+      "id": "f351"
+    },
+    {
+      "userId": "3",
+      "userName": "bob_smith",
+      "firstName": "Bob",
+      "lastName": "Smith",
+      "email": "bob.smith@example.com",
+      "password": "pass123",
+      "phoneNumber": "+1122334455",
+      "address": "789 Pine St, Village",
+      "role": "user",
+      "id": "3804"
+    },
+    {
+      "userName": "johnmary",
+      "firstName": "John",
+      "lastName": "Mary",
+      "email": "johnmary@gmail.com",
+      "password": "12345678",
+      "phoneNumber": "077777777",
+      "address": "129 Downstreet, City",
+      "role": "user",
+      "id": "4eb5"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Seeds",
+      "description": "A variety of seeds for different crops and plants."
+    },
+    {
+      "id": "2",
+      "name": "Fertilizers",
+      "description": "Nutrient-rich fertilizers to enhance soil fertility."
+    },
+    {
+      "id": "3",
+      "name": "Farm Equipment",
+      "description": "Tools and machinery for efficient farming operations."
+    },
+    {
+      "id": "4",
+      "name": "Dairy",
+      "description": "A variety of dairy related products"
+    }
+  ]
 }
