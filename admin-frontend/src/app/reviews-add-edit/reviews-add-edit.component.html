@@ -1,1 +1,76 @@
-<p>reviews-add-edit works!</p>
+<div mat-dialog-title>
+    <h1>User Form</h1>
+  </div>
+  <form [formGroup]="reviewForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Rating</mat-label>
+          <input
+            matInput
+            type="number"
+            placeholder="5"
+            min="1"
+            max="5"
+            formControlName="rating"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Comment</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Amazing"
+            formControlName="comment"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Date Posted</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="datePosted" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>        
+      </div>      
+  
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>User</mat-label>
+          <mat-select formControlName="user">
+            <mat-option
+              *ngFor="let user of reviewForm.get('userOptions')?.value || []"
+              [value]="user?.userId"
+            >
+              {{ user?.firstName }} {{ user?.userId }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Product</mat-label>
+          <mat-select formControlName="product">
+            <mat-option
+              *ngFor="let product of reviewForm.get('productOptions')?.value || []"
+              [value]="product?.productId"
+            >
+              {{ product?.name }} {{ product?.userId }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button type="button" [mat-dialog-close]="false">
+        Cancel
+      </button>
+      <button mat-raised-button color="primary" type="submit">
+        {{ data ? "Update" : "Save" }}
+      </button>
+    </div>
+  </form>
+  

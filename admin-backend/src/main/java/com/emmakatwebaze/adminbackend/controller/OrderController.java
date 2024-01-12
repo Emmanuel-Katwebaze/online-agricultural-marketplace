@@ -25,23 +25,23 @@ public class OrderController {
         return orderService.saveOrder(order);
     }
 
-    @GetMapping("/orders")
+    @GetMapping("/api/orders")
     public List<Order> fetchOrdersList(){
         LOGGER.info("Inside fetchOrdersList of OrderController");
         return orderService.fetchOrdersList();
     }
 
-    @GetMapping("/orders/{id}")
+    @GetMapping("/api/orders/{id}")
     public Order fetchOrderById(@PathVariable("id") Long orderId) throws ResourceNotFoundException {
         return orderService.fetchOrderById(orderId);
     }
 
-    @PutMapping("/orders/{id}")
+    @PutMapping("/api/orders/{id}")
     public Order updateOrder(@PathVariable("id") Long orderId, @RequestBody Order order) {
         return orderService.updateOrder(orderId, order);
     }
 
-    @DeleteMapping("/orders/{id}")
+    @DeleteMapping("/api/orders/{id}")
     public ResponseEntity<ApiResponse> deleteOrderById(@PathVariable("id") Long orderId){
         orderService.deleteOrderById(orderId);
         return ResponseEntity.ok(new ApiResponse("Order deleted Successfully!"));

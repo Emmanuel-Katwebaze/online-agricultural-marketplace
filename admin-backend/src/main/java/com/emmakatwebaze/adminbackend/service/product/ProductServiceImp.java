@@ -56,6 +56,14 @@ public class ProductServiceImp implements ProductService {
     public Product updateProduct(Long productId, Product product) {
         Product productDB = productRepository.findById(productId).get();
 
+        if (product.getCategory() != null) {
+            // Assuming you have a method to fetch the category by ID from the repository
+            Category updatedCategory = categoryRepository.findById(product.getCategory().getCategoryId()).orElse(null);
+            if (updatedCategory != null) {
+                productDB.setCategory(updatedCategory);
+            }
+        }
+
         if(Objects.nonNull(product.getName()) && !"".equalsIgnoreCase(product.getName())){
             productDB.setName(product.getName());
         }

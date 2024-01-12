@@ -64,6 +64,22 @@ public class OrderItemServiceImp implements OrderItemService{
     public OrderItem updateOrderItem(Long orderItemId, OrderItem orderItem) {
         OrderItem orderItemDB = orderItemRepository.findById(orderItemId).get();
 
+        if (orderItem.getProduct() != null) {
+            // Assuming you have a method to fetch the category by ID from the repository
+            Product updatedProduct = productRepository.findById(orderItem.getProduct().getProductId()).orElse(null);
+            if (updatedProduct != null) {
+                orderItemDB.setProduct(updatedProduct);
+            }
+        }
+
+        if (orderItem.getOrder() != null) {
+            // Assuming you have a method to fetch the category by ID from the repository
+            Order updatedOrder = orderRepository.findById(orderItem.getOrder().getOrderId()).orElse(null);
+            if (updatedOrder != null) {
+                orderItemDB.setOrder(updatedOrder);
+            }
+        }
+
         if (orderItem.getQuantity() != null && orderItem.getQuantity() > 0) {
             orderItemDB.setQuantity(orderItem.getQuantity());
         }

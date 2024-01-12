@@ -1,1 +1,80 @@
-<p>products-add-edit works!</p>
+<div mat-dialog-title>
+    <h1>Category Form</h1>
+  </div>
+  <form [formGroup]="productForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+      
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Ex. Seeds"
+            formControlName="name"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <input matInput placeholder="Corn family" formControlName="description" />
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Price</mat-label>
+          <input
+            matInput
+            type="number"
+            placeholder="2000"
+            formControlName="price"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Quantity</mat-label>
+          <input matInput type="number" placeholder="20" formControlName="quantity" />
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Image Url</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="https://imgurl.com/imgs/1232121"
+            formControlName="imageUrl"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Date Added</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dateAdded">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="category">
+            <mat-option *ngFor="let category of productForm.get('categoryOptions')?.value || []" [value]="category?.categoryId">
+              {{ category?.name }} {{ category?.categoryId }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>      
+      
+      
+    </div>
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button type="button" [mat-dialog-close]="false">
+        Cancel
+      </button>
+      <button mat-raised-button color="primary" type="submit">
+        {{ data ? "Update" : "Save" }}
+      </button>
+    </div>
+  </form>
+  

@@ -1,5 +1,6 @@
 package com.emmakatwebaze.adminbackend.service.order;
 
+import com.emmakatwebaze.adminbackend.entity.Category;
 import com.emmakatwebaze.adminbackend.entity.Order;
 import com.emmakatwebaze.adminbackend.entity.User;
 import com.emmakatwebaze.adminbackend.error.ResourceNotFoundException;
@@ -58,6 +59,14 @@ public class OrderServiceImp implements OrderService {
     @Override
     public Order updateOrder(Long orderId, Order order) {
         Order orderDB = orderRepository.findById(orderId).get();
+
+        if (order.getUser() != null) {
+            // Assuming you have a method to fetch the category by ID from the repository
+            User updatedUser = userRepository.findById(order.getUser().getUserId()).orElse(null);
+            if (updatedUser != null) {
+                orderDB.setUser(updatedUser);
+            }
+        }
 
         if(Objects.nonNull(order.getOrderDate()) && !"".equalsIgnoreCase(order.getOrderDate())){
             orderDB.setOrderDate(order.getOrderDate());

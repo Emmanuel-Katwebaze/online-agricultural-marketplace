@@ -63,6 +63,22 @@ public class ReviewServiceImp implements ReviewService{
     public Review updateReview(Long reviewId, Review review) {
         Review reviewDB = reviewRepository.findById(reviewId).get();
 
+        if (review.getUser() != null) {
+            // Assuming you have a method to fetch the category by ID from the repository
+            User updatedUser = userRepository.findById(review.getUser().getUserId()).orElse(null);
+            if (updatedUser != null) {
+                reviewDB.setUser(updatedUser);
+            }
+        }
+
+        if (review.getProduct() != null) {
+            // Assuming you have a method to fetch the category by ID from the repository
+            Product updatedProduct = productRepository.findById(review.getProduct().getProductId()).orElse(null);
+            if (updatedProduct != null) {
+                reviewDB.setProduct(updatedProduct);
+            }
+        }
+
         if(Objects.nonNull(review.getComment()) && !"".equalsIgnoreCase(review.getComment())){
             reviewDB.setComment(review.getComment());
         }
